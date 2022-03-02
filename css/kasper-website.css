@@ -1,0 +1,1116 @@
+/*start variables*/
+:root{
+    --main-color:#19c8fa;
+    --transparent-color: rgb(15 116 143 / 70%);
+    --overlay-color: rgb(0 0 0 / 60%);
+    --section-padding: 100px;
+    --line-height: 1.6;
+    --border-radius: 5px;
+    --border-radius-50: 50%;
+}
+/*end variables*/
+
+/* start global rules */
+*{
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+html{
+    scroll-behavior: smooth;
+}
+body{
+    font-family: 'Open Sans', sans-serif;
+}
+ul{
+    list-style: none;
+}
+/*we add the same container as the first template*/
+.container{
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+/*small*/
+@media (min-width: 768px){
+    .container{
+        width: 750px;
+    }
+}
+/*medium*/
+@media (min-width: 992px){
+    .container{
+        width: 970px;
+    }
+}
+/*large*/
+@media (min-width: 1200px){
+    .container{
+        width: 1170px;
+    }
+}
+/* end global rules */
+
+/*start header*/
+header{
+    position:absolute;
+    width: 100%;
+    z-index: 2;
+}
+header .container{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    min-height: 97px;
+}
+header .container::after{
+    content: " ";
+    position: absolute;
+    height: 1px;
+    background-color: #a2a2a2;
+    width: calc(100% - 30px);
+    bottom: 0;
+    left: 15px;
+}
+header .container .logo img{
+    height: 60px;
+    transition: 1.3s;
+    background-color: #ebebeb;
+    border-radius: 25px;
+}
+header .container .logo img:hover{
+    transform: rotate3d(1,1,1, 360deg);
+}
+header .container nav{
+    flex: 1;  /*so it takes the remaining space*/
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+header nav .toggle-menu{
+    color: white;
+    font-size: 22px;
+    cursor: pointer;
+}
+@media (min-width: 768px){ /*disappear in large screen*/
+    header nav .toggle-menu{
+        display: none;
+    }
+}
+header nav .toggle-menu:hover + ul{ /*when we hover the menu will appear with full width*/
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background-color: rgb(0 0 0 / 50%);
+}
+header nav .toggle-menu:hover + ul li a{
+    padding: 20px;
+}
+header .container nav ul{
+    display: flex;
+}
+@media (max-width: 767px){  /*disapear in mobile screens*/
+    header .container nav ul{
+        display: none;
+    }
+}
+header .container nav ul li a{
+    display: block; /*to respect the properties we assigned*/
+    color: white;
+    text-decoration: none;
+    font-size: 14px;
+    transition: 0.3s;
+    padding: 40px 10px;
+    position: relative;
+    z-index: 2;
+}
+header .container nav ul .active,
+header .container nav ul li a:hover{
+    color: var(--main-color);
+    border-bottom: 1px solid var(--main-color);
+}
+header nav .form{
+    width: 40px;
+    height: 30px;
+    margin-left: 50px;
+    position: relative;
+    border-left: 1px solid white;
+}
+header nav .form i{
+    color: white;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 0;
+    font-size: 20px;
+}
+header nav .form i:hover{
+    color: var(--main-color);
+    cursor: pointer;
+}
+/*end header*/
+
+/*start landing*/
+.landing{
+    min-height: 100vh;
+    background-image: url("../photos/landing-image-2.png");
+    background-size: cover;
+    background-color: #676767; /*in case something happened to the image we set color*/
+    position: relative;
+}
+.landing .overlay{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background-color: var(--overlay-color);
+}
+.landing .text{
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 50%;
+    background-color: var(--transparent-color);
+    color: white;
+    padding: 50px;
+    display: flex;
+    justify-content:flex-end;
+/*so the text remains at the end and so we need width*/
+}
+.landing .text .content{
+    width: 520px;
+}
+@media (max-width: 767px){
+    .landing .text{
+        width: 100%;
+    }
+    .landing .text .content{
+        width: 100%;
+    }
+    .landing .fa-circle-arrow-left{
+        left: 10px !important;
+    }
+}
+.landing .text .content h2{
+    font-weight: normal;
+    font-size: 30px;
+    line-height: var(--line-height);
+    margin-bottom: 20px;
+}
+.landing .text .content p{
+    font-size: 14px;
+    line-height: 1.8;
+}
+.landing .change-background{
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #ddd;
+    font-size: 30px;
+    cursor: pointer;
+}
+.landing .change-background:hover{
+    background-color: var(--main-color);
+    border-radius: var(--border-radius-50);
+}
+.landing .fa-circle-arrow-left{
+    left: 20px;
+}
+.landing .fa-circle-arrow-right{
+    right: 20px;
+}
+.landing .dots{
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 20px;
+    display: flex;
+    /* width: 100px;
+    justify-content: space-evenly; */ /*one way to add space between the dots*/
+}
+.landing .dots li{
+    width: 20px;
+    height: 20px;
+    border: 1px solid white;
+    border-radius: var(--border-radius-50);
+    margin-right: 10px;
+    cursor: pointer;
+}
+.landing .dots li:hover{
+    background-color: var(--main-color);
+    border-color: var(--main-color);
+}
+.landing .dots .active{
+    background-color: var(--main-color);
+    border-color: var(--main-color);
+}
+/*end landing*/
+
+/*start component that will be used many times*/
+.main-heading{
+    text-align: center;
+}
+.main-heading h2{
+    position: relative;
+    font-size: 40px;
+    font-weight: normal;
+    text-transform: uppercase;
+    color: black;
+    margin-bottom: 60px;
+    transition: 0.5s;
+}
+.main-heading h2::before{
+    content: "";
+    position: absolute;
+    width: 120px;
+    height: 2px;
+    background-color: #333;
+    bottom: -25px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+.main-heading h2::after{
+    content: "";
+    position: absolute;
+    width: 14px;
+    height: 14px;
+    border: 2px solid #333;
+    border-radius: var(--border-radius-50);
+    bottom: -33px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: white;
+}
+.main-heading p{
+    color: var(--overlay-color);
+    width: 520px;
+    margin: 0 auto 100px;
+    line-height: var(--line-height);
+    max-width: 100%; /*for mobile screen*/
+}
+/*end component*/
+
+/*start services*/
+.services{
+    padding-top: var(--section-padding);
+    padding-bottom: var(--section-padding);
+}
+.services .srv-box{
+    display: flex;
+}
+.services .srv-box i{
+    margin-right: 50px;
+    color: teal;
+}
+@media (max-width: 767px){
+    .services .srv-box{
+        flex-direction: column;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+    .services .srv-box i{
+        margin: 0 0 30px;
+    }
+}
+.services .srv-box h3{
+    color: var(--main-color);
+    margin-bottom: 20px;
+}
+.services .srv-box p{
+    color: var(--overlay-color);
+    line-height: var(--line-height);
+}
+/*screens after the mobile*/
+@media (min-width: 767px){
+    .services .services-container{
+        display: grid;
+        grid-template-columns: repeat(2, calc(100% / 2));
+        grid-template-rows: 200px;
+        column-gap: 40px;
+        row-gap: 30px;
+        /*we could use
+        grid-template-columns: repeat(auto-fill, minmax(450px, 1fr));
+        */
+    }
+}
+/*end services*/
+
+/*start design*/
+.design{
+    padding-top: var(--section-padding);
+    padding-bottom: var(--section-padding);
+    height: 600px;
+    background-image: url("../photos/mobile.jpg");
+    background-size:cover;
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+.design::after{
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background-color: var(--overlay-color);
+}
+.design .text{
+    z-index: 1;
+    background-color: var(--transparent-color);
+    color: white;
+    padding: 50px;
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 50%;
+}
+@media (max-width: 767px){
+    .design .text{
+        width: 100%;
+    }
+}
+.design .text h2{
+    font-weight: normal;
+    font-size: 30px;
+    line-height: var(--line-height);
+    margin-bottom: 20px;
+    text-transform: uppercase;
+}
+.design .text ul li{
+    padding: 15px 0;
+}
+.design .text ul li::before{
+    /*to add font awesome icons in pseudo elements*/
+    font-family: "font awesome 6 free";
+    content: "\e2ca";
+    font-weight: 900;
+    color: var(--overlay-color);
+    margin-right: 20px;
+}
+/*end design*/
+
+/* start portfolio */
+.portfolio{
+    padding-top: var(--section-padding);
+    padding-bottom: var(--section-padding);
+}
+.portfolio .shuffle{
+    display: flex;
+    justify-content: center;
+}
+.portfolio .shuffle li{
+    padding: 10px;
+    cursor: pointer;
+}
+.portfolio .shuffle li:hover{
+    background-color: var(--main-color);
+    color: white;
+    border-radius: var(--border-radius);
+}
+.portfolio .shuffle .active{
+    background-color: var(--main-color);
+    color: white;
+    border-radius: var(--border-radius);
+}
+.portfolio .images-container{
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 60px;
+}
+.portfolio .images-container .box{
+   position: relative;
+   overflow: hidden; /*so the things outside the box will be hidden*/
+}
+@media (min-width: 768px){ /*screens after mobile*/
+    .portfolio .images-container .box{
+        flex-basis: 50%; /*means two imgs in the screen eahc one is 25% width*/
+    }
+}
+@media (min-width: 1199px){ /* in large screens*/
+    .portfolio .images-container .box{
+        flex-basis: 25%; /*means four imgs in the screen eahc one is 25% width*/
+    }
+}
+.portfolio .images-container .box img{
+    max-width: 100%;
+    transition: 0.4s;
+}
+.portfolio .images-container .box .caption{
+    position: absolute;
+    background-color: white;
+    left: 0;
+    padding: 20px;
+    bottom: -100%;
+    width: 100%;
+    transition: 0.4s;
+}
+.portfolio .images-container .box:hover .caption{
+    bottom: 0;
+}
+.portfolio .images-container .box:hover img{
+    transform: rotate(3deg) scale(1.1);
+}
+.portfolio .images-container .box .caption h4{
+    margin-bottom: 10px;
+}
+.portfolio .images-container .box .caption p{
+    color: var(--main-color);
+}
+.portfolio .more{
+    text-decoration: none;
+    background-color: var(--main-color);
+    color: white;
+    padding: 15px 20px;
+    text-transform: uppercase;
+    border-radius: var(--border-radius);
+    display: block;
+    width: fit-content;
+    margin: 30px auto;
+}
+.portfolio .more:hover{
+    opacity: 70%;
+}
+/* end portfolio */
+
+/* start video */
+.video{
+    position: relative;
+}
+.video::before{
+    content: "";
+    position:absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background-color: rgb(0 0 0 / 40%);
+}
+.video video{
+    width: 100%;
+}
+.video .text{
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 100%;
+    padding: 50px;
+    background-image: linear-gradient(to right, rgb(193 159 59 / 30%), rgb(185 152 49 / 40%), rgb(187 163 76 / 40%), rgb(193 162 64 / 40%), rgb(192 152 49 / 30%));
+    text-align: center;
+    color: white;
+}
+.video .text h2{
+    font-weight: normal;
+    margin-bottom: 30px;
+    text-transform: uppercase;
+    font-size: 25px;
+}
+.video .text p{
+    margin-bottom: 30px;
+    font-size: 20px;
+}
+.video .text button{
+    border: none;
+    background-image: linear-gradient(to right, #ad8b25, #b99831, #bba34c, #c1a240, #c09831);
+    color: white;
+    padding: 15px 20px;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    text-transform: uppercase;
+}
+.video .text button:hover{
+    opacity: 70%;
+}
+/* end video */
+
+/* start about us */
+.about-us{
+    padding-top: var(--section-padding);
+    overflow: hidden;
+    text-align: center;
+}
+.about-us img{
+    position: relative;
+    bottom: -110px;
+    margin-top: -110px;
+    right: 40px;
+    max-width: 100%;
+}
+@media (max-width: 767px){
+    .about-us img{
+        bottom: -80px;
+        right: 10px;
+    }
+}
+/* end about us */
+
+/* start stats */
+.statics{
+    padding-top: var(--section-padding);
+    padding-bottom: var(--section-padding);
+    background-image: url("../photos/stats-2.jpg");
+    background-size: cover;
+    text-align: center;
+    position: relative;
+}
+.statics::before{
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: rgb(0 0 0 / 50%);
+    top: 0;
+    left: 0;
+}
+.statics .container{
+    position: relative;  /*so z-index works and it appears above the layer*/
+    display: flex;
+    flex-wrap: wrap;
+}
+.statics .container .box{
+    color: white;
+    background-color: var(--transparent-color);
+    padding: 50px;
+}
+@media (max-width: 767px){
+    .statics .container .box{
+        flex-basis: 100%;  /*one element in the screen*/
+    }
+}
+@media (min-width: 768px){
+    .statics .container .box{
+        flex-basis: 50%;  /*two elements in the screen*/
+    }
+}
+@media (min-width: 992px){
+    .statics .container .box{
+        flex-basis: 25%;  /*four elements in the screen*/
+    }
+}
+.statics .box i{
+    width: 40px;
+    height: 40px;
+    background-color: var(--overlay-color);
+    border-radius: var(--border-radius-50);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto 25px;
+}
+.statics .box .number{
+    font-size: 45px;
+    font-weight: bold;
+}
+.statics .box p{
+    margin-top: 20px;
+    font-size: 18px;
+}
+/* end stats */
+
+/* start skills */
+.our-skills{
+    padding-top: var(--section-padding);
+    padding-bottom: var(--section-padding);
+}
+.our-skills .container{
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+@media (min-width: 992px){  /*both next to each other in large screen*/
+    .our-skills .container > div {
+        flex-basis: 45%;  /*so there will be 10% left we can use as space between them*/
+    }
+}
+.our-skills .container > div > h3{
+    font-weight: normal;
+    text-transform: uppercase;
+    font-size: 20px;
+    margin-bottom: 25px;
+    text-align: center;
+}
+.our-skills .container > div > p{
+    color: var(--overlay-color);
+    line-height: var(--line-height);
+    margin-bottom: 50px;
+    text-align: center;
+}
+.our-skills .container .testimonials .content{
+    display: flex;
+    margin-bottom: 50px;
+}
+.our-skills .container .testimonials img{
+    width: 100px;
+    height: 100px;
+    border-radius: var(--border-radius-50);
+    margin-right: 40px;
+}
+@media (max-width:767px){  /*in mobile*/
+    .our-skills .container .testimonials .content{
+        flex-direction: column;
+        text-align: center;
+    }
+    .our-skills .container .testimonials img{
+        margin: 0 auto 30px;
+    }
+}
+.our-skills .container .testimonials .text{
+    border-bottom: 1px solid rgb(128 128 128 / 50%);
+    line-height: var(--line-height);
+}
+.our-skills .container .testimonials .text p{
+    text-align: right;
+    font-size: 14px;
+    color: var(--overlay-color);
+    margin-bottom: 10px;
+}
+.our-skills .container .testimonials .dots{
+    display: flex;
+    justify-content:center;
+    margin-bottom: 30px;
+}
+.our-skills .container .testimonials .dots li{
+    width: 14px;
+    height: 14px;
+    border: 1px solid var(--overlay-color);
+    border-radius: var(--border-radius-50);
+    margin-right: 10px;
+    cursor: pointer;
+}
+.our-skills .container .testimonials .dots .active{
+    background-color: var(--main-color);
+    border-color: var(--main-color);
+}
+.our-skills .container .testimonials .dots li:hover{
+    background-color: var(--main-color);
+    border-color: var(--main-color);
+}
+.our-skills .skills .prog-holder{
+    margin-bottom: 35px;
+}
+.our-skills .skills .prog-holder h4{
+    font-weight: normal;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+}
+.our-skills .skills .prog-holder .bar{
+    height: 30px;
+    background-color: #e6e6e6;
+}
+.our-skills .skills .prog-holder .bar-layer{
+    height: 100%;
+    width: 90%;
+    background-color: var(--main-color);
+    position: relative;
+}
+.our-skills .skills .prog-holder .bar-layer::before{
+    content: attr(data);
+    position: absolute;
+    width: 41px;
+    height: 28px;
+    background-color: black;
+    color: white;
+    border-radius: var(--border-radius);
+    right: -19px;
+    top: -45px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.our-skills .skills .prog-holder .bar-layer::after{
+    content: '';
+    position: absolute;
+    border: 10px solid;
+    border-color: black transparent transparent transparent;
+    right: -9px;
+    top: -19px;
+}
+.our-skills .skills .prog-holder .one{
+    width: 85%;
+}
+.our-skills .skills .prog-holder .two{
+    width: 80%;
+}
+/* end skills */
+
+/* start quote */
+.quote{
+    padding-top: var(--section-padding);
+    padding-bottom: var(--section-padding);
+    background-image: url("../photos/quote.jpg");
+    background-size: cover;
+    position: relative;
+    color: white;
+    text-align: center;
+}
+.quote::before{
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: rgb(0 0 0 / 60%);
+    top: 0;
+    left: 0;
+}
+.quote .container{
+    position: relative;
+}
+.quote .container q{
+    font-size: 30px;
+}
+.quote .container q::after{
+    font-family: "font awesome 6 free";
+    content: "\f10e";
+    font-weight: 900;
+}
+.quote .container q::before{
+    font-family: "font awesome 6 free";
+    content: "\f10d";
+    font-weight: 900;
+}
+.quote .container span{
+    display: block;
+    margin-top: 30px;
+}
+/* end quote */
+
+/* start pricing */
+.pricing{
+    padding-top: var(--section-padding);
+    padding-bottom: var(--section-padding);
+    background-image: linear-gradient(to right, #009688, #f44336);
+}
+.pricing .plans{
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 30px;
+}
+@media (min-width: 992px) and (max-width: 1199px){
+    .pricing .plans{
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    }
+}
+.pricing .plans .box{
+    background-color: #605f5f;
+    text-align: center;
+    color: white;
+}
+.pricing .plans .box .head{
+    border-top: 1px solid var(--main-color);
+    border-bottom: 1px solid var(--main-color);
+    padding: 40px 20px;
+}
+.pricing .plans .box .head h3{
+    font-weight: normal;
+    text-transform: uppercase;
+    font-size: 20px;
+    margin-bottom: 15px;
+}
+.pricing .plans .box .head span{
+    display: block;
+    font-weight: bold;
+    font-size: 60px;
+    position: relative;
+}
+.pricing .plans .box .head span::before{
+    content: '$';
+    position: absolute;
+    font-weight: normal;
+    font-size: 25px;
+    top: -5px;
+    left: 35px;
+}
+.pricing .plans .box .head span::after{
+    content: '/Mo';
+    position: absolute;
+    font-size: 23px;
+    bottom: 5px;
+    right: 15px;
+}
+.pricing .plans .box ul{
+    border-bottom: 1px solid var(--main-color);
+}
+.pricing .plans .box ul li{
+    position: relative;
+    padding: 20px;
+}
+.pricing .plans .box ul li:not(:last-child)::after{
+    content: "";
+    position: absolute;
+    width: 150px;
+    height: 1px;
+    background-color: var(--main-color);
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 0;
+}
+.pricing .plans .box .foot a{
+    display: block;
+    text-decoration: none;
+    border: 1px solid var(--main-color);
+    padding: 20px;
+    width: fit-content;
+    margin: 40px auto;
+    color: white;
+    transition: 0.2s;
+    border-radius: var(--border-radius);
+}
+.pricing .plans .box .foot a:hover{
+    background-color: var(--main-color);
+    background-image: linear-gradient(to right, #009688, #f44336);
+    transform: scale(1.1);
+}
+.pricing .contact-text{
+    text-align: center;
+    font-size: 22px;
+    margin: 50px auto 20px;
+    color: white;
+}
+.pricing .contact-link{
+    display: block;
+    text-align: center;
+    text-decoration: none;
+    font-size: 22px;
+    color: white;
+    background-color: var(--main-color);
+    width: fit-content;
+    margin: 20px auto;
+    padding: 20px;
+    border-radius: var(--border-radius);
+}
+.pricing .contact-link:hover{
+    opacity: 70%;
+}
+/* end pricing */
+
+/* start subscribe */
+.subscribe{
+    padding-top: var(--section-padding);
+    padding-bottom: var(--section-padding);
+    background-image: url("../photos/form.jpg");
+    background-size: cover;
+    position: relative;
+    color: white;
+}
+.subscribe::before{
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: rgb(0 0 0 / 50%);
+    top: 0;
+    left: 0;
+}
+.subscribe .container{
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+@media (max-width: 991px){
+    .subscribe .container{
+        flex-direction: column;
+    }
+}
+.subscribe form{
+    display: flex;
+    width: 500px;
+    max-width: 100%; /*so it remains 100% of the width and in mobile screens too*/
+    position: relative;
+}
+.subscribe form i{
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 12px;
+    font-size: 20px;
+}
+.subscribe form input[type="email"]{
+    background: none;
+    border: 1px solid white;
+    padding: 20px 20px 20px 50px; /*bigger padding from the left to put the icon in the input*/
+    width: calc(100% - 130px); /*this input takes the form width minus 130px which goes to submit input*/
+    border-right: none;
+    caret-color: var(--main-color);
+}
+.subscribe form input[type="submit"]{
+    width: 130px;
+    background-color: var(--main-color);
+    color: white;
+    border: 1px solid white;
+    border-left: none;
+    text-transform: uppercase;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+.subscribe form input[type="email"]:focus,
+.subscribe form input[type="submit"]:focus{
+    outline: none;
+}
+.subscribe form input[type="submit"]:hover{
+    opacity: 70%;
+}
+.subscribe form ::placeholder{
+    color: white;
+}
+.subscribe p{
+    line-height: var(--line-height);
+    margin-left: 55px;
+}
+@media (max-width: 991px){
+    .subscribe p{
+        margin: 30px 0 0;
+    }
+}
+/* end subscribe */
+
+/* start contact us */
+.contact{
+    padding-top: var(--section-padding);
+    padding-bottom: var(--section-padding);
+}
+.contact .content{
+    display: flex;
+    justify-content: space-between;
+}
+@media (max-width: 767px){
+    .contact .content{
+        flex-direction: column;
+    }
+    .contact .content .info{
+        margin-top: 30px;
+        text-align: center;
+    }
+    /*or i can use column-reverse*/
+    /*or i can use order: -1; for the info*/
+}
+.contact .content form{
+    flex-basis: 70%;   /*so it takes 70% of the width of the container*/
+}
+.contact .content form .main-input{
+    display: block;
+    width: 100%;
+    margin-bottom: 30px;
+    padding: 20px;
+    border: 1px solid #ccc;
+}
+.contact .content form .main-input:focus{
+    outline: none;
+}
+.contact .content form textarea.main-input{  /*with no space, the textarea with class main-input*/
+    height: 200px;
+}
+.contact .content form input[type="submit"]{
+    background-color: var(--main-color);
+    color: white;
+    border: none;
+    text-transform: uppercase;
+    padding: 20px;
+    cursor: pointer;
+    display: flex;
+    margin-left: auto;
+    border-radius: var(--border-radius);
+}
+.contact .content form input[type="submit"]:hover{
+    opacity: 70%;
+}
+.contact .content .info{
+    flex-basis: 25%;  /*so it takes 25% of the width of the container and keeps 5% space between them*/
+}
+.contact .content .info h4{
+    font-size: 20px;
+    font-weight: normal;
+    text-transform: uppercase;
+    margin-bottom: 30px;
+}
+.contact .content .info .phone{
+    display: block;
+    margin-bottom: 10px;
+    color: var(--overlay-color);
+}
+.contact .content .info h4:nth-child(4){  /*or nth-last of type*/
+    margin-top: 90px;
+}
+@media (max-width: 767px){
+    .contact .content .info h4:nth-child(4){
+        margin-top: 40px;
+    }
+}
+.contact .content .info address{
+    line-height: var(--line-height);
+    color: var(--overlay-color);
+}
+/* end contact us */
+
+/* start footer */
+footer{
+    padding-top: calc(var(--section-padding) / 2);
+    padding-bottom: calc(var(--section-padding) / 2);
+    background-image: url("../photos/footer.jpg");
+    background-size: cover;
+    text-align: center;
+    color: white;
+    position: relative;
+}
+footer::before{
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: rgb(0 0 0 / 50%);
+    top: 0;
+    left: 0;
+}
+footer .container{
+    position: relative;
+}
+footer .container img{
+    background-color: aliceblue;
+    height: 50px;
+    border-radius: 25px;
+    cursor: pointer;
+    margin-bottom:20px;
+}
+footer .container p:not(.copyright):not(.created){
+    font-size: 22px;
+    text-transform: uppercase;
+    border-bottom: 1px solid white;
+    width: fit-content;
+    margin: 20px auto;
+    padding: 20px;
+}
+footer .container .social-icons i{
+    padding: 10px 15px;
+    cursor: pointer;
+}
+footer .container .social-icons i:hover{
+    color: var(--main-color);
+}
+footer .container .copyright{
+    margin: 60px auto 0;
+}
+footer .container .copyright span{
+    color: var(--main-color);
+    font-weight: bold;
+    cursor: pointer;
+}
+footer .created{
+    font-size: 15px;
+    text-transform:capitalize;
+    padding: 20px;
+    margin-top: 10px;
+    margin-bottom: -45px;
+}
+footer .created i{
+    color: rgb(235 0 0);
+}
+/* end footer */
